@@ -10,14 +10,15 @@ pnode get_node(pnode head, int node_num) {
     while (NULL != head && head->node_num != node_num) {
         head = head->next;
     }
-    if (NULL == head) {
-        return NULL;
-    }
     return head;
 }
 
 pnode create_node(int node_num) {
     pnode new_node = (pnode) malloc(sizeof(node));
+    if (new_node == NULL) {
+        printf("Error: Failed to allocate memory for node number[%d].\n", node_num);
+        return NULL;
+    }
     new_node->node_num = node_num;
     new_node->edges = NULL;
     new_node->next = NULL;
@@ -64,12 +65,14 @@ void insert_node_cmd(pnode *head) {
         return;
     }
     int node_num;
-    scanf("%d", &node_num);
-
+    if (scanf("%d", &node_num) != 1) {
+        printf("Failed with [insert_node_cmd] :: Invalid Input.\n");
+        return;
+    }
     pnode new_node = get_node(*head, node_num);
 
     if (NULL == new_node) {
-        create_node(node_num);
+        new_node = create_node(node_num);
 
     } else {
         delete_all_edges(new_node);
@@ -103,8 +106,15 @@ void delete_node_cmd(pnode *head) {
         return;
     }
     int delete_node;
-    scanf("%d", &delete_node);
+    if (scanf("%d", &delete_node) != 1) {
+        printf("Failed with [delete_node_cmd] :: Invalid Input.\n");
+        return;
+    }
     pnode ifExists = get_node(*head, delete_node);
+    if (ifExists == NULL) {
+        printf("Failed with [delete_node_cmd] :: Node number[%d] does not exists.\n", delete_node);
+        return;
+    }
     detach_node(head, ifExists);
 }
 
@@ -125,17 +135,18 @@ void deleteGraph_cmd(pnode *head) {
         current = current->next;
         free(temp);
     }
+    *head = NULL;
 }
 
 void build_graph_cmd(pnode *head) {
     if (NULL != *head) {
         deleteGraph_cmd(head);
     }
-    int size;
-    scanf("%d", &size);
+    int number_nodes;
+    scanf("%d", &number_nodes);
 
     pnode *current = head;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < number_nodes; i++) {
         pnode new_node = create_node(i);
         *current = new_node;
         current = &(*current)->next;
