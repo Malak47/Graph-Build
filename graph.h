@@ -20,15 +20,32 @@ typedef struct GRAPH_NODE_ {
     struct GRAPH_NODE_ *next;
 } node, *pnode;
 
-void build_graph_cmd(pnode *head);
-
+/**
+ * Insert a new node and its edges to the graph.
+ * @param head: Pointer to the head of the linked list
+ */
 void insert_node_cmd(pnode *head);
-
+/**
+ * Delete a node and its edges from the graph.
+ * @param head: Pointer to the head of the linked list.
+ */
 void delete_node_cmd(pnode *head);
-
-void printGraph_cmd(pnode head); //for self debug
-
+/**
+ * Print the graph for debugging.
+ * @param head: Pointer to the head of the linked list.
+ */
+void printGraph_cmd(pnode head);
+/**
+ * Delete the graph and release the memory allocated for it.
+ * @param head: Pointer to the head of the linked list.
+ */
 void deleteGraph_cmd(pnode *head);
+
+/**
+ * Find the shortest path between two nodes.
+ * @param head: Pointer to the head of the linked list
+ */
+void build_graph_cmd(pnode *head);
 
 void shortsPath_cmd(pnode head);
 
