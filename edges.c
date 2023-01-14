@@ -7,7 +7,7 @@
 
 void print_edges(pnode node) {
     if (NULL == node) {
-        printf("Failed with [printEdges] :: Node is NULL.\n");
+        printf("Failed with [print_edges] :: Node is NULL.\n");
         return;
     }
     pedge current_edge = node->edges;
@@ -21,14 +21,14 @@ void print_edges(pnode node) {
 
 void print_all_edges(pnode head) {
     if (NULL == head) {
-        printf("Failed with [printEdges] :: Node number[%d] is NULL.\n", head->node_num);
+        printf("Failed with [print_all_edges] :: Node is NULL.\n");
         return;
     }
     pnode current_node = head;
-    while (current_node != NULL) {
+    while (NULL != current_node) {
         printf("Node[%d] edges:\n", current_node->node_num);
         pedge current_edge = current_node->edges;
-        while (current_edge != NULL) {
+        while (NULL != current_edge) {
             printf("Node[%d] -- Weight[%d] --> Node[%d]\n", current_node->node_num, current_edge->weight,
                    current_edge->endpoint->node_num);
             current_edge = current_edge->next;
@@ -43,7 +43,7 @@ void insert_edge(pnode source, pnode dest, int weight) {
         return;
     }
     pedge new_edge = (pedge) malloc(sizeof(edge));
-    if (new_edge == NULL) {
+    if (NULL == new_edge) {
         printf("Error: Failed to allocate memory for edge between[%d,%d].\n", source->node_num, dest->node_num);
         return;
     }
