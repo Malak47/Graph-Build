@@ -65,11 +65,8 @@ void detach_node(pnode *head, pnode node) {
 }
 
 void insert_node_cmd(pnode *head) {
-    if (NULL == *head) {
-        printf("Failed with [insert_node_cmd] :: Graph is empty.\n");
-        return;
-    }
     int node_num;
+    int exist = 0;
     scanf("%d", &node_num);
 
     pnode new_node = get_node(*head, node_num);
@@ -78,9 +75,9 @@ void insert_node_cmd(pnode *head) {
         new_node = create_node(node_num);
 
     } else {
+        exist = 1;
         delete_outer_edges(new_node);
     }
-
     int weight;
     int dest_node_number;
 
@@ -99,6 +96,13 @@ void insert_node_cmd(pnode *head) {
         }
         scanf("%d", &weight);
         insert_edge(new_node, dest_node, weight);
+    }
+    if (1 == exist)
+        return;
+
+    if (NULL == *head) {
+        *head = new_node;
+        return;
     }
     attach_node(head, new_node);
 }
@@ -145,29 +149,29 @@ void build_graph_cmd(pnode *head) {
         deleteGraph_cmd(head);
     }
     int number_nodes;
-    printf("Enter number of nodes:\n");
+//    printf("Enter number of nodes:\n");
     scanf("%d", &number_nodes);
 
     for (int i = 0; i < number_nodes; ++i) {
         pnode node = create_node(i);
         attach_node(head, node);
     }
+}
+
+char n_input(pnode *head) {
     char ch;
-    printf("Inserting new node? [n]\n");
-    while (scanf(" %c", &ch) > 0) {
-        if (ch == 'n') {
-            int source_number, dest_number, weight;
-            printf("[source node]:\n");
-            scanf("%d", &source_number);
-            pnode source_node = get_node(*head, source_number);
-            printf("[dest, weight]:\n");
-            while (scanf("%d", &dest_number) > 0) {
-                scanf("%d", &weight);
-                insert_edge(source_node, get_node(*head, dest_number), weight);
-            }
-        } else {
-            break;
+//    printf("Inserting new node? [n]\n");
+    while (scanf(" %c", &ch) && ch == 'n') {
+        int source_number, dest_number, weight;
+//            printf("[source node]:\n");
+        scanf("%d", &source_number);
+        pnode source_node = get_node(*head, source_number);
+//            printf("[dest, weight]:\n");
+        while (scanf("%d", &dest_number) > 0) {
+            scanf("%d", &weight);
+            insert_edge(source_node, get_node(*head, dest_number), weight);
         }
     }
+    return ch;
 }
 
