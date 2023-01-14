@@ -27,7 +27,8 @@ pnode create_node(int node_num);
  * @param head: Pointer to the head of the linked list.
  * @param node: Pointer to the node to be attached.
  */
-void attach_node(pnode head, pnode node);
+void attach_node(pnode *head, pnode node);
+
 /**
  * Detach a node from the linked list of nodes.
  * @param head: Pointer to the head of the linked list.
