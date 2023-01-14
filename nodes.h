@@ -61,4 +61,11 @@ void deleteGraph_cmd(pnode *head);
  */
 void build_graph_cmd(pnode *head);
 
+/**
+ * Used for accepting n input from user with no issues.
+ * @param head: Pointer to the head of the linked list
+ * @return: char if it's not n.
+ */
+char n_input(pnode *head);
+
 #endif //S_S_A_4_NODES_H
