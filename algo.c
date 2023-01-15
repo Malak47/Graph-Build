@@ -114,12 +114,12 @@ void shortsPath_cmd(pnode head) {
     printf("Dijsktra shortest path: %d \n", res);
 }
 
-int *arrayRemoveElement(int *arr, int len, int k) {
+int *arrayRemoveElement(int *arr, int len, int index) {
     int *newArr = (int *) malloc(sizeof(int) * len - 1);
     int i = 0;
     int j = 0;
     while (i < len) {
-        if (i != k) {
+        if (i != index) {
             *(newArr + j) = *(arr + i);
             j++;
         }
