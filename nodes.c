@@ -62,6 +62,7 @@ void detach_node(pnode *head, pnode node) {
     // Remove edges from the node
     delete_inner_edges(*head, node);
     delete_outer_edges(node);
+    free(node);
 }
 
 void insert_node_cmd(pnode *head) {
