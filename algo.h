@@ -11,7 +11,7 @@
  * @param head: Pointer to the head of the linked list.
  * @return: The maximum node ID. Returns -1 if the list is empty.
 */
-int get_max_id(pnode head);
+int get_max(pnode head);
 
 /**
  * Returns the index of the element with the minimum value in the given array, that has not been visited.
@@ -28,7 +28,7 @@ int get_min(int *dist, int *visited, int len);
  * @param len: The length of the array.
  * @return: 1 if all elements are true, 0 otherwise.
  */
-int isEmpty(int *visited, int len);
+int is_empty(int *visited, int len);
 
 /**
  * Finds the shortest path from the source node to the destination node using the Dijkstra algorithm.
@@ -37,7 +37,7 @@ int isEmpty(int *visited, int len);
  * @param dest: The ending node for the shortest path.
  * @return: The shortest path from the source to the destination. Returns -1 if no path exists.
  */
-int shortsPath_Dijkstra(pnode head, int source, int dest);
+int shortest_path_dijkstra(pnode head, int source, int dest);
 
 /**
  * Prints the shortest path from the source node to the destination node using the Dijkstra algorithm.
@@ -53,7 +53,7 @@ void shortsPath_cmd(pnode head);
 * @param index: The index of the element to be removed.
 * @return: The new array with the given element removed.
 */
-int *arrayRemoveElement(int *arr, int len, int index);
+int *array_remove_element(int *arr, int len, int index);
 
 /**
  * Finds a tour visiting all nodes starting from the source node using the TSP algorithm.
